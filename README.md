@@ -1,4 +1,4 @@
-# Program: BusOut Cylon
+# Program: Button Selector
 **Author:**   
 **Date:** 
 
@@ -12,7 +12,11 @@ Designed for bare metal Mbed OS 6 (enabled through `mbed_app.json`).
 
 ## Hardware
 ### Internal
-* BusOut to four internal LEDs (LED1, LED2, LED3, LED4)
+* DigitalOut to LED1 (the button indicator)
+* DigitalOut to LED4 (the heart beat)
+### External
+* p7 (DigitalIn) <-- ?? complete this ??
+
 ## Flow
 ```mermaid
 graph TD
