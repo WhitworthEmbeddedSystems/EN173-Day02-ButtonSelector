@@ -1,11 +1,22 @@
-#include <mbed.h>
+#include "mbed.h"
 
-#define SLEEP_TIME 250ms
+// Flashing rates in blinks per second
+#define FAST_HEART_RATE 5
+#define SLOW_HEART_RATE 1
+#define ONE_SECOND 1000ms
 
-BusOut cylon(LED1,LED2,LED3,LED4);
+DigitalOut pbIndicator(LED1);
+DigitalOut heart(LED4);
+DigitalIn pb(p7);
 
 int main() {
-  while (1) {
-    // put your main code here, to run repeatedly:
+  while (true) {
+    heart = !heart;
+    pbIndicator = pb;
+    if (pb) {
+      ThisThread::sleep_for(ONE_SECOND / FAST_HEART_RATE / 2);
+    } else {
+      ThisThread::sleep_for(ONE_SECOND / SLOW_HEART_RATE / 2);
+    }
   }
 }
