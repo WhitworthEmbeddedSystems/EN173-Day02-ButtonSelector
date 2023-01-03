@@ -1,22 +1,19 @@
-#include "mbed.h"
+#include <mbed.h>
 
-// Flashing rates in blinks per second
-#define FAST_HEART_RATE 5
-#define SLOW_HEART_RATE 1
-#define ONE_SECOND 1000ms
+#define SLEEP_TIME 200ms
 
-DigitalOut pbIndicator(LED1);
-DigitalOut heart(LED4);
+DigitalOut redLED(p5);
+DigitalOut greenLED(p6);
 DigitalIn pb(p7);
 
 int main() {
-  while (true) {
-    heart = !heart;
-    pbIndicator = pb;
-    if (pb) {
-      ThisThread::sleep_for(ONE_SECOND / FAST_HEART_RATE / 2);
+  while (1) {
+    if (pb) {  // <1>
+      redLED = !redLED; // <2>
+      ThisThread::sleep_for(SLEEP_TIME);
     } else {
-      ThisThread::sleep_for(ONE_SECOND / SLOW_HEART_RATE / 2);
+      greenLED = !greenLED;
+      ThisThread::sleep_for(SLEEP_TIME);
     }
   }
 }
